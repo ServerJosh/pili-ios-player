@@ -1,89 +1,89 @@
 # PLPlayerKit
 
-PLPlayerKit 是为 **pili流媒体云服务** 提供的一套播放直播流的 SDK, 旨在解决 iOS 端快速、轻松实现 iOS 设备播放直播流，便于 **pili流媒体云服务** 的开发者专注于产品业务本身，而不必在技术细节上花费不必要的时间。
+PLPlayerKit is set to play the live stream SDK is ** pili streaming cloud service ** offer aimed at resolving iOS end quickly and easily iOS devices to play live streaming, ease ** pili streaming cloud service developers ** focus on product business itself, without having to spend unnecessary time on the technical details.
 
 
-## 内容摘要
+## abstract
 
-- [1 快速开始](#1-快速开始)
-	- [1.1 配置工程](#1.1-配置工程)
-	- [1.2 示例代码](#1.2-示例代码)
-- [2 第三方库](#2-第三方库)
-- [3 系统要求](#3-系统要求)
-- [4 版本历史](#4-版本历史)
+- [1 Quick Start] (# 1 - Quick Start)
+- [1.1 Configuration Engineering] (# 1.1 Configuration Engineering)
+- [1.2 sample code] (# 1.2 code sample)
+- [2 third-party libraries] (# 2 - third-party libraries)
+- [3 System Requirements] (# 3 - system requirements)
+- [4 version history] (# 4 - version history)
 
-## 1 快速开始
+## 1 Quick Start
 
-### 1.1 配置工程
+### 1.1 Configuration Engineering
 
-- 配置你的 Podfile 文件，添加如下配置信息
+- Configure your Podfile file, add the following configuration information
 
-```
+`` `
 pod 'PLPlayerKit', '1.0.1'
-```
+`` `
 
-- 安装 CocoaPods 依赖
+- Installation CocoaPods dependent
 
-```
+`` `
 pod install
-```
+`` `
 
-- Done! 运行你工程的 workspace
+-! Done to run your project workspace
 
-### 1.2 示例代码
+### 1.2 Sample Code
 
-在需要的地方添加
+Add where needed
 
-```Objective-C
-#import <PLPlayerKit/PLPlayerKit.h>
-```
+`` `Objective-C
+#import <PLPlayerKit / PLPlayerKit.h>
+`` `
 
-初始化
+initialization
 
-```Objective-C
-	// 初始化 VideoPlayerViewController
-	PLVideoPlayerViewController *viewPlayerViewController = [PLVideoPlayerViewController videoPlayerViewControllerWithContentURL:url parameters:parameters];
-	
-	// 展示播放界面
-	[self presentViewController:viewPlayerViewController animated:YES completion:nil];
-```
+`` `Objective-C
+// Initialize VideoPlayerViewController
+PLVideoPlayerViewController * viewPlayerViewController = [PLVideoPlayerViewController videoPlayerViewControllerWithContentURL: url parameters: parameters];
 
-参数配置
+// Show player interface
+[Self presentViewController: viewPlayerViewController animated: YES completion: nil];
+`` `
 
-```Objective-C
-	NSMutableDictionary *parameters = [@{} mutableCopy];
-	
-	// 对于 iPhone 建议关闭逐行扫描，默认是开启的
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-		parameters[PLMovieParameterDisableDeinterlacing] = @(YES);
-	}
-```
+Parameter Configuration
 
-播放操作，PLVideoPlayerViewController 会在展示时自动开始播放，当然，如果你需要自己在代码中控制播放逻辑，也可以调用以下方法轻松开始／暂停
-```Objective-C
-	// 播放
-	[viewPlayerViewController play];
-	
-	// 停止
-	[viewPlayerViewController pause];
-```
+`` `Objective-C
+NSMutableDictionary * parameters = [@ {} mutableCopy];
 
-如果你想自定义播放界面，那么你需要隐藏原有的播放控制，你可以这么做到
+// For iPhone advised to turn off progressive scan, it is enabled by default
+if (UI_USER_INTERFACE_IDIOM () == UIUserInterfaceIdiomPhone) {
+parameters [PLMovieParameterDisableDeinterlacing] = @ (YES);
+}
+`` `
 
-```Objective-C
-	viewPlayerViewController.controlMode = PLVideoPlayerControlModeNone;
-```
+Playback operation, PLVideoPlayerViewController will automatically start playing when the show, of course, if you need to control their own play logic in the code, you can call the following method to easily start / pause
+`` `Objective-C
+// Play
+[ViewPlayerViewController play];
 
-## 2 包含的第三方库
+// stop
+[ViewPlayerViewController pause];
+`` `
 
-- ffmpeg
+If you want to customize the player interface, then you need to hide the original playback control, you can do to
 
-## 3 系统要求
+`` `Objective-C
+viewPlayerViewController.controlMode = PLVideoPlayerControlModeNone;
+`` `
 
-- iOS Target : >= iOS 6
+## 2 third-party libraries included
 
-## 4 版本历史
+- Ffmpeg
+
+## 3 System Requirements
+
+- IOS Target:> = iOS 6
+
+## 4 Version History
 - 1.0.1
-	- CocoaPods 版本初始化
+- CocoaPods version initialize
 - 1.0.0
-	- 完成基本的 RTMP/HLS 流播放播放器
+- Complete the basic RTMP / HLS streaming player
