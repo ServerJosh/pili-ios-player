@@ -1,89 +1,61 @@
-# PLPlayerKit
+PLPlayerKit is set to play the live stream SDK as pili streaming cloud services aimed at addressing iOS end quickly and easily iOS devices to play live streaming, ease of developers pili streaming cloud services focus on product business itself, rather than spending unnecessary time on the technical details.
 
-PLPlayerKit 是为 **pili流媒体云服务** 提供的一套播放直播流的 SDK, 旨在解决 iOS 端快速、轻松实现 iOS 设备播放直播流，便于 **pili流媒体云服务** 的开发者专注于产品业务本身，而不必在技术细节上花费不必要的时间。
+abstract
 
+1 Quick Start
+1.1 Configuration Engineering
+1.2 Sample Code
+2 Third-party libraries
+3 System Requirements
+4 Version History
+1 Quick Start
 
-## 内容摘要
+1.1 Configuration Engineering
 
-- [1 快速开始](#1-快速开始)
-	- [1.1 配置工程](#1.1-配置工程)
-	- [1.2 示例代码](#1.2-示例代码)
-- [2 第三方库](#2-第三方库)
-- [3 系统要求](#3-系统要求)
-- [4 版本历史](#4-版本历史)
-
-## 1 快速开始
-
-### 1.1 配置工程
-
-- 配置你的 Podfile 文件，添加如下配置信息
-
-```
+Configure your Podfile file, add the following configuration information
 pod 'PLPlayerKit', '1.0.1'
-```
-
-- 安装 CocoaPods 依赖
-
-```
+Installation CocoaPods dependence
 pod install
-```
+Done! Run your project workspace
+1.2 Sample Code
 
-- Done! 运行你工程的 workspace
+Add where needed
 
-### 1.2 示例代码
+#import <PLPlayerKit / PLPlayerKit.h>
+initialization
 
-在需要的地方添加
+    // Initialize VideoPlayerViewController
+    PLVideoPlayerViewController * viewPlayerViewController = [PLVideoPlayerViewController videoPlayerViewControllerWithContentURL: url parameters: parameters];
 
-```Objective-C
-#import <PLPlayerKit/PLPlayerKit.h>
-```
+    // Show player interface
+    [Self presentViewController: viewPlayerViewController animated: YES completion: nil];
+Parameter Configuration
 
-初始化
+    NSMutableDictionary * parameters = [@ {} mutableCopy];
 
-```Objective-C
-	// 初始化 VideoPlayerViewController
-	PLVideoPlayerViewController *viewPlayerViewController = [PLVideoPlayerViewController videoPlayerViewControllerWithContentURL:url parameters:parameters];
-	
-	// 展示播放界面
-	[self presentViewController:viewPlayerViewController animated:YES completion:nil];
-```
+    // For iPhone advised to turn off progressive scan, it is enabled by default
+    if (UI_USER_INTERFACE_IDIOM () == UIUserInterfaceIdiomPhone) {
+        parameters [PLMovieParameterDisableDeinterlacing] = @ (YES);
+    }
+Playback operation, PLVideoPlayerViewController will automatically start playing when the show, of course, if you need to control their own play logic in the code, you can call the following method to easily start / pause
 
-参数配置
+    // Play
+    [ViewPlayerViewController play];
 
-```Objective-C
-	NSMutableDictionary *parameters = [@{} mutableCopy];
-	
-	// 对于 iPhone 建议关闭逐行扫描，默认是开启的
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-		parameters[PLMovieParameterDisableDeinterlacing] = @(YES);
-	}
-```
+    // stop
+    [ViewPlayerViewController pause];
+If you want to customize the player interface, then you need to hide the original playback control, you can do to
 
-播放操作，PLVideoPlayerViewController 会在展示时自动开始播放，当然，如果你需要自己在代码中控制播放逻辑，也可以调用以下方法轻松开始／暂停
-```Objective-C
-	// 播放
-	[viewPlayerViewController play];
-	
-	// 停止
-	[viewPlayerViewController pause];
-```
+    viewPlayerViewController.controlMode = PLVideoPlayerControlModeNone;
+2 third-party libraries included
 
-如果你想自定义播放界面，那么你需要隐藏原有的播放控制，你可以这么做到
+ffmpeg
+3 System Requirements
 
-```Objective-C
-	viewPlayerViewController.controlMode = PLVideoPlayerControlModeNone;
-```
+iOS Target:> = iOS 6
+4 Version History
 
-## 2 包含的第三方库
-
-- ffmpeg
-
-## 3 系统要求
-
-- iOS Target : >= iOS 6
-
-## 4 版本历史
-- 1.0.1
-	- CocoaPods 版本初始化
-- 1.0.0
-	- 完成基本的 RTMP/HLS 流播放播放器
+1.0.1
+CocoaPods version initialize
+1.0.0
+Complete basic RTMP / HLS streaming player
